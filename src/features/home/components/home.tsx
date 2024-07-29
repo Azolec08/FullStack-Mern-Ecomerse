@@ -1,14 +1,16 @@
+import Category from "./category";
 import FeaturedProducts from "./featured-products";
 import Slider from "./slider";
 
-const HomeHero = () => {
+const Home = () => {
   return (
-    <section className="w-full min-h-[100dvh]">
+    <main className="w-full min-h-[100dvh] ">
       <Slider />
       <FeaturedProducts types="Featured" />
+      <Category />
       <FeaturedProducts types="Trending" />
-    </section>
+    </main>
   );
 };
 
-export default HomeHero;
+export default Home;

@@ -22,11 +22,28 @@ const CardComponent = ({ data }: DataProps) => {
           <CardTitle>{data.title}</CardTitle>
           <CardDescription>Card Description</CardDescription>
         </CardHeader>
-        <CardContent>
-          <img src={data.img} alt="" className="w-[180px] h-[180px]" />
+        <CardContent className="relative group">
+          {data.isNew && (
+            <span className="text-[8px] font-medium p-1 bg-blue-400 text-white absolute  top-2 z-20">
+              New Season
+            </span>
+          )}
+          <img
+            src={data.img}
+            alt=""
+            className="w-full h-[250px] lg:w-[180px] lg:h-[180px] "
+          />
+          {data.img2 && (
+            <img
+              src={data.img2}
+              alt=""
+              className="w-full lg:w-[180px] lg:h-[180px] top-0 opacity-0 absolute group-hover:opacity-100 transition "
+            />
+          )}
         </CardContent>
-        <CardFooter>
-          <p>{Currency(data.price)}</p>
+        <CardFooter className="gap-x-3">
+          <h3 className="text-gray-400 line-through">{Currency(data.price)}</h3>
+          <h3>{Currency(data.price)}</h3>
         </CardFooter>
       </Card>
     </Link>

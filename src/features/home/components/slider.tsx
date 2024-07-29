@@ -20,7 +20,7 @@ const Slider = () => {
   }, [dispatch, currentSlide]);
 
   return (
-    <div className="flex relative w-full overflow-x-hidden">
+    <section className="flex relative w-full overflow-x-hidden">
       <div
         className="flex transition-transform duration-500 "
         style={{ transform: `translateX(-${currentSlide * 100}vw)` }}
@@ -49,7 +49,7 @@ const Slider = () => {
           <ArrowRight />
         </button>
       </div>
-    </div>
+    </section>
   );
 };
 
