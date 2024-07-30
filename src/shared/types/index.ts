@@ -14,3 +14,12 @@ export type FeaturedType = {
   oldPrice: number;
   price: number;
 };
+
+export type CategoryTypes = {
+  maxPrice: number;
+  sort: string;
+};
+
+export type ProductTypes = {
+  selectedImg: number;
+};
