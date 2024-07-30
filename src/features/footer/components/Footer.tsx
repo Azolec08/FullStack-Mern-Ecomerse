@@ -1,7 +1,7 @@
 import Contact from "./contact";
 const Footer = () => {
   return (
-    <footer className="w-full ">
+    <footer className="w-full h-fit  ">
       <Contact />
       <div className="flex flex-col gap-y-8 py-10 container">
         <div className="grid grid-cols-1  md:grid-cols-2 lg:grid-cols-4 w-full gap-y-10 gap-x-10">

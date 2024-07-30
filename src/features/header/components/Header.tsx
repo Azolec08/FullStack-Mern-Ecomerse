@@ -5,7 +5,7 @@ import HeaderRightCategory from "./header-right-category";
 
 const Header = () => {
   return (
-    <header className="w-ful  h-[80px]">
+    <header className="w-ful  h-[80px] sticky top-0 bg-white z-30">
       <nav className="hidden lg:flex container w-full h-full justify-between py-[10px] ">
         <HeaderLeftCategory />
         <Link to="/" className="h-full flex items-center">

@@ -4,7 +4,7 @@ import Slider from "./slider";
 
 const Home = () => {
   return (
-    <main className="w-full min-h-[100dvh] ">
+    <main className="w-full min-h-[100dvh]">
       <Slider />
       <FeaturedProducts types="Featured" />
       <Category />
