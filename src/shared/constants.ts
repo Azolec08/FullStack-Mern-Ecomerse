@@ -1,17 +1,3 @@
-export const DataImage = [
-  {
-    image:
-      "https://c4.wallpaperflare.com/wallpaper/189/854/571/anime-landscape-anime-art-painting-sea-wallpaper-preview.jpg",
-  },
-  {
-    image: "https://images.alphacoders.com/804/804298.jpg",
-  },
-  {
-    image:
-      "https://c4.wallpaperflare.com/wallpaper/79/67/639/anime-i-want-to-eat-your-pancreas-haruki-shiga-sakura-yamauchi-wallpaper-thumb.jpg",
-  },
-];
-
 export const Datas = [
   {
     id: 1,

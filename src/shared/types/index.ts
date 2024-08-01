@@ -22,4 +22,6 @@ export type CategoryTypes = {
 
 export type ProductTypes = {
   selectedImg: number;
+  quantity: number;
+  open: boolean;
 };

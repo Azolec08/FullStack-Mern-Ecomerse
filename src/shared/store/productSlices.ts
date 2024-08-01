@@ -1,8 +1,10 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { ProductTypes } from "../types";
 
 const initialState: ProductTypes = {
   selectedImg: 0,
+  quantity: 1,
+  open: false,
 };
 
 const counterSlice = createSlice({
@@ -15,9 +17,19 @@ const counterSlice = createSlice({
     handleSelectedImgTwo: (state) => {
       state.selectedImg = 1;
     },
+    setQuantity: (state, action: PayloadAction<number>) => {
+      state.quantity = action.payload;
+    },
+    handleOpenCart: (state) => {
+      state.open = !state.open;
+    },
   },
 });
 
-export const { handleSelectedImgOne, handleSelectedImgTwo } =
-  counterSlice.actions;
+export const {
+  handleSelectedImgOne,
+  handleSelectedImgTwo,
+  setQuantity,
+  handleOpenCart,
+} = counterSlice.actions;
 export const productReducer = counterSlice.reducer;

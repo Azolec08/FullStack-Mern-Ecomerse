@@ -5,6 +5,7 @@ import {
 import { RootState } from "@/shared/store/store";
 import { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import Cart from "./cart";
 const Product = () => {
   const state = useSelector((state: RootState) => state.product);
   const dispatch = useDispatch();
@@ -22,19 +23,19 @@ const Product = () => {
   }, [dispatch]);
 
   return (
-    <section className="flex h-[100vh] container gap-x-5">
+    <section className="flex h-[550px]  container gap-x-5 flex-wrap w-full">
       <div className="flex flex-col gap-y-2">
         <div></div>
         <img
           src={images[0]}
           alt=""
-          className="w-[100px] h-[100px]"
+          className="w-[100px] h-[100px] object-fit"
           onClick={handleOneImg}
         />
         <img
           src={images[1]}
           alt=""
-          className="w-[100px] h-[100px]"
+          className="w-[100px] h-[100px] object-fit"
           onClick={handleTwoImg}
         />
       </div>
@@ -42,10 +43,12 @@ const Product = () => {
         <img
           src={images[state.selectedImg]}
           alt=""
-          className="h-[500px] w-[500px]"
+          className="h-[500px] w-[500px] object-fit"
         />
       </div>
-      <div></div>
+      <div className="">
+        <Cart />
+      </div>
     </section>
   );
 };
