@@ -9,6 +9,7 @@ const Home = () => {
       <FeaturedProducts types="Featured" />
       <Category />
       <FeaturedProducts types="Trending" />
+      <FeaturedProducts types="Normal" />
     </main>
   );
 };

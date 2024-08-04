@@ -26,7 +26,7 @@ const LeftCategory = () => {
 
   return (
     <div className="flex min-h-[1000px] w-full">
-      <div className="flex flex-col gap-y-4 w-[300px] container h-full sticky top-[80px]">
+      <div className="flex flex-col gap-y-4 w-[300px] container h-full sticky top-[80px] pb-7">
         <div className="flex w-full flex-col gap-y-2 items">
           <h1 className="font-semibold">Product Categories</h1>
           <div className="flex gap-x-2">

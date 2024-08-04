@@ -19,31 +19,38 @@ const CardComponent = ({ data }: DataProps) => {
     <Link to={`/category/${data.id}`}>
       <Card>
         <CardHeader>
-          <CardTitle>{data.title}</CardTitle>
+          <CardTitle>{data.attributes.title}</CardTitle>
           <CardDescription>Card Description</CardDescription>
         </CardHeader>
         <CardContent className="relative group w-full">
-          {data.isNew && (
+          {data.attributes.isNew && (
             <span className="text-[8px] font-medium p-1 bg-blue-400 text-white absolute top-2 z-20">
               New Season
             </span>
           )}
           <img
-            src={data.img}
+            src={
+              import.meta.env.VITE_REACT_APP_UPLOAD_URL +
+              data?.attributes?.img?.data?.attributes?.url
+            }
             alt=""
             className="w-full h-[180px] md:h-[250px] lg:h-[220px]"
           />
-          {data.img2 && (
-            <img
-              src={data.img2}
-              alt=""
-              className="w-full h-[180px] md:h-[250px] lg:h-[220px] px-6 absolute top-0 left-0 opacity-0 group-hover:opacity-100 transition"
-            />
-          )}
+
+          <img
+            src={
+              import.meta.env.VITE_REACT_APP_UPLOAD_URL +
+              data?.attributes?.img2?.data?.attributes?.url
+            }
+            alt=""
+            className="w-full h-[180px] md:h-[250px] lg:h-[220px] px-6 absolute top-0 left-0 opacity-0 group-hover:opacity-100 transition"
+          />
         </CardContent>
         <CardFooter className="gap-x-3">
-          <h3 className="text-gray-400 line-through">{Currency(data.price)}</h3>
-          <h3>{Currency(data.price)}</h3>
+          <h3 className="text-gray-400 line-through">
+            {Currency(data?.attributes.oldPrice || data?.attributes.price * 2)}
+          </h3>
+          <h3>{Currency(data?.attributes.price)}</h3>
         </CardFooter>
       </Card>
     </Link>

@@ -5,15 +5,30 @@ export type CounterState = {
   currentSlide: number;
 };
 
-export type FeaturedType = {
+export interface FeaturedType {
   id: number;
-  title: string;
-  img: string;
-  img2?: string;
-  isNew?: boolean;
-  oldPrice: number;
-  price: number;
-};
+  attributes: {
+    title: string;
+    description?: string;
+    isNew: boolean;
+    img: {
+      data: {
+        attributes: {
+          url: string;
+        };
+      };
+    };
+    img2: {
+      data: {
+        attributes: {
+          url: string;
+        };
+      };
+    };
+    oldPrice?: number;
+    price: number;
+  };
+}
 
 export type CategoryTypes = {
   maxPrice: number;
