@@ -1,7 +1,16 @@
 import CardComponent from "@/shared/components/card-components";
-import { Datas } from "../constants";
+import { useFetchQuery } from "@/shared/mutation/use-some-mutation";
+import { FeaturedType } from "@/shared/types";
 
-const List = () => {
+type TypesProps = {
+  types: string;
+};
+
+const List: React.FC<TypesProps> = ({ types }) => {
+  const { data: myData, isLoading, error } = useFetchQuery(types);
+
+  if (isLoading) return <div>Loading...</div>;
+  if (error) return <div>Error</div>;
   return (
     <div className="w-full flex flex-col gap-y-10 ">
       <div className="-full">
@@ -12,7 +21,7 @@ const List = () => {
         />
       </div>
       <div className="grid grid-cols-3 gap-2">
-        {Datas.map((data) => {
+        {myData.map((data: FeaturedType) => {
           return <CardComponent key={data.id} data={data} />;
         })}
       </div>

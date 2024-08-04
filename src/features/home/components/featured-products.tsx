@@ -1,35 +1,14 @@
 import CardComponent from "@/shared/components/card-components";
+import { useFetchQuery } from "@/shared/mutation/use-some-mutation";
 import { FeaturedType } from "@/shared/types";
-import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
-
 type TypeProp = {
   types: string;
 };
 
 const FeaturedProducts: React.FC<TypeProp> = ({ types }) => {
   // Define the query function
-  const fetchProducts = async () => {
-    const res = await axios.get(
-      `${
-        import.meta.env.VITE_REACT_APP_API_URL
-      }/products?populate=*&filters[type][$eq]=${types}`,
-      {
-        headers: {
-          Authorization: `bearer ${import.meta.env.VITE_REACT_APP_API_TOKEN}`,
-        },
-      }
-    );
-    return res.data.data;
-  };
-  const {
-    data: myData,
-    error,
-    isLoading,
-  } = useQuery({
-    queryKey: ["products", types],
-    queryFn: fetchProducts,
-  });
+
+  const { data: myData, isLoading, error } = useFetchQuery(types);
 
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>Error loading data</div>;
