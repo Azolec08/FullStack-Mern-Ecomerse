@@ -1,3 +1,4 @@
+import { useSubCategories } from "@/shared/mutation/use-some-mutation";
 import { handleMaxPrice, handleSort } from "@/shared/store/categorySlices";
 import { RootState } from "@/shared/store/store";
 import { ChangeEvent } from "react";
@@ -22,7 +23,16 @@ const LeftCategory = () => {
     dispatch(handleSort(sortOrder));
   };
 
-  const catId = useParams();
+  const { id } = useParams<{ id: string }>();
+  const catId: number | null = id ? parseInt(id) : null;
+
+  const { data, isLoading, error } = useSubCategories(catId ?? 0);
+
+  if (isLoading) return <div>Loading...</div>;
+  if (error) return <div>Something went wrong</div>;
+  if (!data || data.length === 0) return <div>No subcategories found</div>; // Handle empty data
+
+  console.log(data);
 
   return (
     <div className="flex min-h-[1000px] w-full">

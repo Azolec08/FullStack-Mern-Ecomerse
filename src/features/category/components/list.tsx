@@ -1,16 +1,17 @@
-import CardComponent from "@/shared/components/card-components";
-import { useFetchQuery } from "@/shared/mutation/use-some-mutation";
-import { FeaturedType } from "@/shared/types";
+// import CardComponent from "@/shared/components/card-components";
+// import { useSubCategories } from "@/shared/mutation/use-some-mutation";
+// import { FeaturedType } from "@/shared/types";
 
 type TypesProps = {
-  types: string;
+  catId: number;
 };
 
-const List: React.FC<TypesProps> = ({ types }) => {
-  const { data: myData, isLoading, error } = useFetchQuery(types);
+const List: React.FC<TypesProps> = ({ catId }) => {
+  // const { data: myData, isLoading, error } = useSubCategories(catId);
 
-  if (isLoading) return <div>Loading...</div>;
-  if (error) return <div>Error</div>;
+  // if (isLoading) return <div className="w-full">Loading...</div>;
+  // if (error) return <div>Error</div>;
+
   return (
     <div className="w-full flex flex-col gap-y-10 ">
       <div className="-full">
@@ -21,9 +22,9 @@ const List: React.FC<TypesProps> = ({ types }) => {
         />
       </div>
       <div className="grid grid-cols-3 gap-2">
-        {myData.map((data: FeaturedType) => {
-          return <CardComponent key={data.id} data={data} />;
-        })}
+        {/* {myData.map((data: FeaturedType) => {
+          return <CardComponent key={data.id} data={myData} />;
+        })} */}
       </div>
     </div>
   );

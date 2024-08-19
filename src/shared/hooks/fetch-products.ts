@@ -1,16 +1,15 @@
-import axios from "axios";
+import { makeRequest } from "./makeRequest";
 
 export const dataFetching = async (types: string) => {
-  const response = await axios.get(
-    `${
-      import.meta.env.VITE_REACT_APP_API_URL
-    }/products?populate=*&filters[type][$eq]=${types}`,
-    {
-      headers: {
-        Authorization: `bearer ${import.meta.env.VITE_REACT_APP_API_TOKEN}`,
-      },
-    }
+  const response = await makeRequest.get(
+    `/products?populate=*&filters[type][$eq]=${types}`
   );
-  console.log(response);
+  return response.data.data;
+};
+
+export const subCategories = async (catId: number) => {
+  const response = await makeRequest.get(
+    `/sub-categories?[filters][categories][id][$eq]=${catId}`
+  );
   return response.data.data;
 };

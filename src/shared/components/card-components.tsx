@@ -16,7 +16,7 @@ interface DataProps {
 
 const CardComponent = ({ data }: DataProps) => {
   return (
-    <Link to={`/category/${data.id}`}>
+    <Link to={`/product/${data.id}`}>
       <Card>
         <CardHeader>
           <CardTitle>{data.attributes.title}</CardTitle>
@@ -51,6 +51,9 @@ const CardComponent = ({ data }: DataProps) => {
             {Currency(data?.attributes.oldPrice || data?.attributes.price * 2)}
           </h3>
           <h3>{Currency(data?.attributes.price)}</h3>
+          {/* <h3 className="text-[12px]">
+            {data.attributes.createdAt.replace("T", "-").slice(0, 16)}
+          </h3> */}
         </CardFooter>
       </Card>
     </Link>
