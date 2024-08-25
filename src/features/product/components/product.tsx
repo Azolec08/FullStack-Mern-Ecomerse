@@ -1,18 +1,22 @@
+import { useSingleProduct } from "@/shared/mutation/use-some-mutation";
 import {
   handleSelectedImgOne,
   handleSelectedImgTwo,
 } from "@/shared/store/productSlices";
 import { RootState } from "@/shared/store/store";
+import { ImageData } from "@/shared/types";
+import { getFullImageUrl } from "@/shared/utils/url-helper";
 import { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 import Cart from "./cart";
+
 const Product = () => {
+  const { id } = useParams<{ id: string }>();
+  const catId: number = id ? parseInt(id) : 1;
+
   const state = useSelector((state: RootState) => state.product);
   const dispatch = useDispatch();
-  const images = [
-    "https://images.pexels.com/photos/346746/pexels-photo-346746.jpeg?auto=compress&cs=tinysrgb&w=600",
-    "https://images.pexels.com/photos/3965557/pexels-photo-3965557.jpeg?auto=compress&cs=tinysrgb&w=600",
-  ];
 
   const handleOneImg = useCallback(() => {
     dispatch(handleSelectedImgOne());
@@ -22,32 +26,44 @@ const Product = () => {
     dispatch(handleSelectedImgTwo());
   }, [dispatch]);
 
+  const { data, isLoading, error } = useSingleProduct(catId);
+
+  if (isLoading) return <div>Loading...</div>;
+  if (error) return <div>Something went wrong</div>;
+
+  const selectedImageData = data?.attributes[
+    state.selectedImg as keyof typeof data.attributes
+  ] as ImageData;
+
   return (
-    <section className="flex h-[550px]  container gap-x-5 flex-wrap w-full">
+    <section className="flex min-h-[550px]  container gap-x-5 flex-wrap w-full">
       <div className="flex flex-col gap-y-2">
-        <div></div>
+        {data?.attributes?.img?.data?.attributes?.url && (
+          <img
+            src={getFullImageUrl(data?.attributes.img.data?.attributes?.url)}
+            alt="Product Image"
+            className="w-[100px] h-[100px] object-fit cursor-pointer"
+            onClick={handleOneImg}
+          />
+        )}
+        {data?.attributes?.img2?.data?.attributes?.url && (
+          <img
+            src={getFullImageUrl(data?.attributes.img2.data?.attributes?.url)}
+            alt="Product Image2"
+            className="w-[100px] h-[100px] object-fit cursor-pointer"
+            onClick={handleTwoImg}
+          />
+        )}
+      </div>
+      <div className="h-[500px] w-[500px]">
         <img
-          src={images[0]}
+          src={getFullImageUrl(selectedImageData.data?.attributes?.url)}
           alt=""
-          className="w-[100px] h-[100px] object-fit"
-          onClick={handleOneImg}
-        />
-        <img
-          src={images[1]}
-          alt=""
-          className="w-[100px] h-[100px] object-fit"
-          onClick={handleTwoImg}
+          className="h-full w-full "
         />
       </div>
       <div className="">
-        <img
-          src={images[state.selectedImg]}
-          alt=""
-          className="h-[500px] w-[500px] object-fit"
-        />
-      </div>
-      <div className="">
-        <Cart />
+        <Cart title={data?.attributes.title} />
       </div>
     </section>
   );

@@ -11,19 +11,19 @@ import {
 } from "./ui/card";
 
 interface DataProps {
-  data: FeaturedType;
+  item: FeaturedType;
 }
 
-const CardComponent = ({ data }: DataProps) => {
+const CardComponent = ({ item }: DataProps) => {
   return (
-    <Link to={`/product/${data.id}`}>
+    <Link to={`/product/${item.id}`}>
       <Card>
         <CardHeader>
-          <CardTitle>{data.attributes.title}</CardTitle>
+          <CardTitle>{item.attributes.title}</CardTitle>
           <CardDescription>Card Description</CardDescription>
         </CardHeader>
         <CardContent className="relative group w-full">
-          {data.attributes.isNew && (
+          {item.attributes.isNew && (
             <span className="text-[8px] font-medium p-1 bg-blue-400 text-white absolute top-2 z-20">
               New Season
             </span>
@@ -31,7 +31,7 @@ const CardComponent = ({ data }: DataProps) => {
           <img
             src={
               import.meta.env.VITE_REACT_APP_UPLOAD_URL +
-              data?.attributes?.img?.data?.attributes?.url
+              item?.attributes?.img?.data?.attributes?.url
             }
             alt=""
             className="w-full h-[180px] md:h-[250px] lg:h-[220px]"
@@ -40,7 +40,7 @@ const CardComponent = ({ data }: DataProps) => {
           <img
             src={
               import.meta.env.VITE_REACT_APP_UPLOAD_URL +
-              data?.attributes?.img2?.data?.attributes?.url
+              item?.attributes?.img2?.data?.attributes?.url
             }
             alt=""
             className="w-full h-[180px] md:h-[250px] lg:h-[220px] px-6 absolute top-0 left-0 opacity-0 group-hover:opacity-100 transition"
@@ -48,9 +48,9 @@ const CardComponent = ({ data }: DataProps) => {
         </CardContent>
         <CardFooter className="gap-x-3">
           <h3 className="text-gray-400 line-through">
-            {Currency(data?.attributes.oldPrice || data?.attributes.price * 2)}
+            {Currency(item?.attributes.oldPrice || item?.attributes.price * 2)}
           </h3>
-          <h3>{Currency(data?.attributes.price)}</h3>
+          <h3>{Currency(item?.attributes.price)}</h3>
           {/* <h3 className="text-[12px]">
             {data.attributes.createdAt.replace("T", "-").slice(0, 16)}
           </h3> */}

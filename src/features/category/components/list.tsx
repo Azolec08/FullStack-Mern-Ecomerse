@@ -1,16 +1,28 @@
-// import CardComponent from "@/shared/components/card-components";
-// import { useSubCategories } from "@/shared/mutation/use-some-mutation";
-// import { FeaturedType } from "@/shared/types";
+import CardComponent from "@/shared/components/card-components";
+import { useSubCategoryFilter } from "@/shared/mutation/use-some-mutation";
+import { FeaturedType } from "@/shared/types";
 
 type TypesProps = {
   catId: number;
+  maxPrice: number;
+  sort: string;
+  subCats: number[];
 };
 
-const List: React.FC<TypesProps> = ({ catId }) => {
-  // const { data: myData, isLoading, error } = useSubCategories(catId);
+const List: React.FC<TypesProps> = ({
+  catId,
+  maxPrice,
+  sort,
+  subCats,
+}: TypesProps) => {
+  const {
+    data: myData,
+    isLoading,
+    error,
+  } = useSubCategoryFilter(catId, subCats, maxPrice, sort);
 
-  // if (isLoading) return <div className="w-full">Loading...</div>;
-  // if (error) return <div>Error</div>;
+  if (isLoading) return <div className="w-full">Loading...</div>;
+  if (error) return <div>Error</div>;
 
   return (
     <div className="w-full flex flex-col gap-y-10 ">
@@ -22,9 +34,9 @@ const List: React.FC<TypesProps> = ({ catId }) => {
         />
       </div>
       <div className="grid grid-cols-3 gap-2">
-        {/* {myData.map((data: FeaturedType) => {
-          return <CardComponent key={data.id} data={myData} />;
-        })} */}
+        {myData.map((item: FeaturedType) => {
+          return <CardComponent key={item.id} item={item} />;
+        })}
       </div>
     </div>
   );

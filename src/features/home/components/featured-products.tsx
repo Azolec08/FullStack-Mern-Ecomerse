@@ -24,7 +24,7 @@ const FeaturedProducts: React.FC<TypeProp> = ({ types }) => {
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 items-center justify-evenly gap-x-9 w-full">
         {myData.map((data: FeaturedType) => (
-          <CardComponent key={data.id} data={data} />
+          <CardComponent key={data.id} item={data} />
         ))}
       </div>
     </section>

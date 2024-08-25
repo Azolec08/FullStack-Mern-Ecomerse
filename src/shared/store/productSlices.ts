@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { ProductTypes } from "../types";
 
 const initialState: ProductTypes = {
-  selectedImg: 0,
+  selectedImg: "img",
   quantity: 1,
   open: false,
 };
@@ -12,10 +12,10 @@ const counterSlice = createSlice({
   initialState,
   reducers: {
     handleSelectedImgOne: (state) => {
-      state.selectedImg = 0;
+      state.selectedImg = "img";
     },
     handleSelectedImgTwo: (state) => {
-      state.selectedImg = 1;
+      state.selectedImg = "img2";
     },
     setQuantity: (state, action: PayloadAction<number>) => {
       state.quantity = action.payload;

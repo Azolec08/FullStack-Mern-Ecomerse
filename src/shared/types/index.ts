@@ -33,10 +33,36 @@ export interface FeaturedType {
 export type CategoryTypes = {
   maxPrice: number;
   sort: string;
+  selectedCats: number[];
 };
 
 export type ProductTypes = {
-  selectedImg: number;
+  selectedImg: string;
   quantity: number;
   open: boolean;
+};
+
+export type SortTypes = {
+  id?: number | string;
+  attributes: {
+    title: string;
+  };
+};
+
+export type ImageData = {
+  data: {
+    attributes: {
+      url: string;
+    };
+  };
+};
+
+export type SingleProductTypes = {
+  id: number;
+  attributes: {
+    title: string;
+    img: ImageData;
+    img2: ImageData;
+    // other fields
+  };
 };

@@ -22,7 +22,7 @@ const counterSlice = createSlice({
       state.open = action.payload;
     },
     highIncrement: (state, action) => {
-      state.value += action.payload;
+      state.value = action.payload;
     },
     nameValue: (state, action) => {
       state.name = action.payload;

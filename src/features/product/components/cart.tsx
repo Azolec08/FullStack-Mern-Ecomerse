@@ -5,7 +5,11 @@ import { RootState } from "@/shared/store/store";
 import { Currency } from "@/shared/utils/currency";
 import { Diff, Heart, ShoppingCart } from "lucide-react";
 
-const Cart = () => {
+interface dataProps {
+  title: string | undefined;
+}
+
+const Cart = ({ title }: dataProps) => {
   const dispatch = useDispatch();
   const state = useSelector((state: RootState) => state.product);
 
@@ -19,7 +23,7 @@ const Cart = () => {
 
   return (
     <div className="flex flex-col gap-y-4 w-full">
-      <h1 className="text-[24px] font-bold">Long Sleeve Graphic T-Sgirt</h1>
+      <h1 className="text-[24px] font-bold">{title}</h1>
       <div className="flex flex-col gap-y-2">
         <span>{Currency(25)}</span>
         <p className="w-[25rem]">
