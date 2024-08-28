@@ -1,10 +1,10 @@
 import { handleOpenCart } from "@/shared/store/productSlices";
 import { RootState } from "@/shared/store/store";
-import { Heart, Search, ShoppingCart, UserRound } from "lucide-react";
+import { Search, ShoppingCart } from "lucide-react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { DataLinks } from "../constants";
-import CardCart from "./card-cart";
+import CartContainer from "./cart-container";
 
 const HeaderRightCategory = () => {
   const dispatch = useDispatch();
@@ -12,25 +12,25 @@ const HeaderRightCategory = () => {
   const handleCart = () => {
     dispatch(handleOpenCart());
   };
+
+  const products = useSelector((state: RootState) => state.cart.products);
   return (
     <div className=" flex gap-x-5 items-center ">
       {DataLinks.map((data) => {
         return (
-          <Link to={data.link} key={data.name}>
+          <Link to={data.link} key={data.name} className="text-[#013237]">
             {data.name}
           </Link>
         );
       })}
       <div className="flex gap-x-3">
         <Search size={18} />
-        <UserRound size={18} />
-        <Heart size={18} />
         <div className="relative">
           <ShoppingCart onClick={handleCart} className="cursor-pointer" />
-          <span className="absolute text-[12px] bg-blue-600 px-[5px] text-white rounded-full -top-2 -right-2">
-            0
+          <span className="absolute text-[12px] bg-[#4ca771] px-[5px] text-white rounded-full -top-2 -right-2">
+            {products.length}
           </span>
-          {openState && <CardCart />}
+          {openState && <CartContainer />}
         </div>
       </div>
     </div>

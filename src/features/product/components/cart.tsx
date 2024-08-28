@@ -1,36 +1,48 @@
 import { useDispatch, useSelector } from "react-redux";
 
+import { addToCart } from "@/shared/store/cartSlices";
 import { setQuantity } from "@/shared/store/productSlices";
 import { RootState } from "@/shared/store/store";
+import { SingleProductTypes } from "@/shared/types";
 import { Currency } from "@/shared/utils/currency";
+import { getFullImageUrl } from "@/shared/utils/url-helper";
 import { Diff, Heart, ShoppingCart } from "lucide-react";
 
-interface dataProps {
-  title: string | undefined;
-}
+type dataProps = {
+  data: SingleProductTypes | undefined;
+};
 
-const Cart = ({ title }: dataProps) => {
+const Cart = ({ data }: dataProps) => {
   const dispatch = useDispatch();
-  const state = useSelector((state: RootState) => state.product);
+  const quantity = useSelector((state: RootState) => state.product.quantity);
 
   const handleDecrementQuantity = () => {
-    dispatch(setQuantity(state.quantity > 1 ? state.quantity - 1 : 1));
+    dispatch(setQuantity(quantity > 1 ? quantity - 1 : 1));
   };
 
   const handleIncrementQuantity = () => {
-    dispatch(setQuantity(state.quantity + 1));
+    dispatch(setQuantity(quantity + 1));
+  };
+
+  const handleAddToCart = () => {
+    dispatch(
+      addToCart({
+        id: data?.id,
+        title: data?.attributes.title,
+        desc: data?.attributes.desc,
+        price: data?.attributes.price, // Convert to number
+        img: getFullImageUrl(data?.attributes.img.data.attributes.url),
+        quantity: quantity,
+      })
+    );
   };
 
   return (
     <div className="flex flex-col gap-y-4 w-full">
-      <h1 className="text-[24px] font-bold">{title}</h1>
+      <h1 className="text-[24px] font-bold">{data?.attributes.title}</h1>
       <div className="flex flex-col gap-y-2">
-        <span>{Currency(25)}</span>
-        <p className="w-[25rem]">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam,
-          consequatur sequi quas expedita corrupti atque sunt autem eaque omnis
-          tempore? Quas?
-        </p>
+        <span>{data && <span>{Currency(data?.attributes?.price)}</span>}</span>
+        <p className="w-[25rem]">{data?.attributes.desc}</p>
       </div>
       <div className="flex flex-col gap-y-4">
         <div className="flex gap-x-2 items-center">
@@ -40,7 +52,7 @@ const Cart = ({ title }: dataProps) => {
           >
             -
           </button>
-          <span className="w-4 flex justify-center">{state.quantity}</span>
+          <span className="w-4 flex justify-center">{quantity}</span>
           <button
             className="w-[30px] h-[30px] bg-slate-200"
             onClick={handleIncrementQuantity}
@@ -49,7 +61,10 @@ const Cart = ({ title }: dataProps) => {
           </button>
         </div>
         <div>
-          <button className="flex items-center gap-x-3 px-5 h-[35px] bg-blue-500 p-1 text-white">
+          <button
+            className="flex items-center gap-x-3 px-5 h-[35px] bg-blue-500 p-1 text-white"
+            onClick={handleAddToCart}
+          >
             <ShoppingCart />
             ADD TO CART
           </button>

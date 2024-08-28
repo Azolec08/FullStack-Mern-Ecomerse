@@ -63,7 +63,7 @@ const Product = () => {
         />
       </div>
       <div className="">
-        <Cart title={data?.attributes.title} />
+        <Cart data={data} />
       </div>
     </section>
   );

@@ -19,10 +19,6 @@ export const DataProducts = [
 
 export const DataLinks = [
   {
-    name: "Homepage",
-    link: "/home",
-  },
-  {
     name: "About",
     link: "/about",
   },

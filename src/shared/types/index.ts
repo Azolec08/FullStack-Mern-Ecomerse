@@ -9,7 +9,7 @@ export interface FeaturedType {
   id: number;
   attributes: {
     title: string;
-    description?: string;
+    desc?: string;
     isNew: boolean;
     img: {
       data: {
@@ -61,8 +61,22 @@ export type SingleProductTypes = {
   id: number;
   attributes: {
     title: string;
+    price: number;
+    desc?: string | undefined;
     img: ImageData;
     img2: ImageData;
     // other fields
   };
+};
+
+export type Product = {
+  id: number;
+  quantity: number;
+  title: string;
+  price: number;
+  img: string;
+};
+
+export type ProdcutsTypes = {
+  products: Product[];
 };
