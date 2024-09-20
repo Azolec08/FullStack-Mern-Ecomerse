@@ -1,10 +1,11 @@
 import { handleOpenCart } from "@/shared/store/productSlices";
 import { RootState } from "@/shared/store/store";
-import { Search, ShoppingCart } from "lucide-react";
+import { ShoppingCart } from "lucide-react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { DataLinks } from "../constants";
 import CartContainer from "./cart-container";
+import { SearchBar } from "./SearchBar";
 
 const HeaderRightCategory = () => {
   const dispatch = useDispatch();
@@ -23,8 +24,8 @@ const HeaderRightCategory = () => {
           </Link>
         );
       })}
-      <div className="flex gap-x-3">
-        <Search size={18} />
+      <div className="flex gap-x-5">
+        <SearchBar />
         <div className="relative">
           <ShoppingCart onClick={handleCart} className="cursor-pointer" />
           <span className="absolute text-[12px] bg-[#4ca771] px-[5px] text-white rounded-full -top-2 -right-2">

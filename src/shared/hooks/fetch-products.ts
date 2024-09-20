@@ -2,7 +2,7 @@ import { makeRequest } from "./makeRequest";
 
 export const dataFetching = async (types: string) => {
   const response = await makeRequest.get(
-    `/products?populate=*&filters[type][$eq]=${types}`
+    `/products?populate=*&[filters][type][$eq]=${types}`
   );
   return response.data.data;
 };

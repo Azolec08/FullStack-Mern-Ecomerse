@@ -9,11 +9,7 @@ const Category = () => {
               to="/category/1"
               className="relative group w-full h-full flex items-center justify-center"
             >
-              <img
-                src="https://images.pexels.com/photos/3865911/pexels-photo-3865911.jpeg?auto=compress&cs=tinysrgb&w=600"
-                alt=""
-                className="h-[220px] object-cover w-full"
-              />
+              <img src="" alt="" className="h-[220px] object-cover w-full" />
               <button className="absolute w-[100px] flex items-center justify-center font-semibold bg-gray-200 h-[30px] m-auto p-[10px] bottom-0 right-0 top-0 group-hover:text-white transition left-0 group-hover:bg-blue-600">
                 Sale
               </button>

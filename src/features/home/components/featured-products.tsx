@@ -13,6 +13,8 @@ const FeaturedProducts: React.FC<TypeProp> = ({ types }) => {
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>Error loading data</div>;
 
+  console.log(myData);
+
   return (
     <section className="w-full py-10 container">
       <div className="flex flex-col md:flex-row justify-around w-full py-5">

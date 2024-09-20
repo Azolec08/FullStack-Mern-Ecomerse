@@ -34,8 +34,8 @@ const LeftCategory = () => {
     dispatch(
       setSelectedCats(
         isChecked
-          ? [...state.selectedCats, value]
-          : state.selectedCats.filter((item) => item !== value)
+          ? [...state.selectedCats, value] // Add the category to the selected categories if checked
+          : state.selectedCats.filter((item) => item !== value) // Remove it if unchecked
       )
     );
   };
@@ -49,13 +49,12 @@ const LeftCategory = () => {
 
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>Something went wrong</div>;
-  if (!data || data.length === 0) return <div>No subcategories found</div>; // Handle empty data
 
   return (
     <div className="flex min-h-[1000px] w-full">
       <div className="flex flex-col gap-y-4 w-[300px] container h-full sticky top-[80px] pb-7">
         <div className="flex w-full flex-col gap-y-2 items">
-          <h1 className="font-semibold">Product Categories</h1>
+          <h1 className="font-semibold">Product Categories: {id}</h1>
           {data?.map((item: SortTypes) => (
             <div key={item.id} className="flex gap-x-2">
               <input

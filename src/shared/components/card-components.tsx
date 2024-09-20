@@ -17,7 +17,7 @@ interface DataProps {
 const CardComponent = ({ item }: DataProps) => {
   return (
     <Link to={`/product/${item.id}`}>
-      <Card>
+      <Card >
         <CardHeader>
           <CardTitle>{item.attributes.title}</CardTitle>
           <CardDescription>Card Description</CardDescription>

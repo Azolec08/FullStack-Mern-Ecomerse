@@ -1,19 +1,19 @@
 export const DataProducts = [
   {
     name: "Man",
-    link: "/products/1",
+    link: "/category/1",
   },
   {
     name: "Women",
-    link: "/products/2",
+    link: "/category/2",
   },
   {
     name: "Children",
-    link: "/products/3",
+    link: "/category/3",
   },
   {
     name: "Accessories",
-    link: "/products/4",
+    link: "/category/4",
   },
 ];
 

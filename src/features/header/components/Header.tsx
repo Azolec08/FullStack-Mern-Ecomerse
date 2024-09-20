@@ -1,4 +1,4 @@
-import { Sidebar } from "@/shared/components/ui/sidebar";
+import { Sidebar } from "@/features/header/components/sidebar";
 import { handleOpenCart } from "@/shared/store/productSlices";
 import { RootState } from "@/shared/store/store";
 import { ShoppingCart } from "lucide-react";
